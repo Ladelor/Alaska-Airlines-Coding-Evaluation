@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="page-header">
+        <h1>Find a Flight</h1>
+        <h4>Search for flights using 3 Character Airplane code</h4>
+        <form class="navbar-form navbar-left" role="search" method="POST" action="../Flights/Find">
+            <div class="form-group">
+                <h3>Departing: <input type="text" name="departing" class="form-control" placeholder="SEA" /></h3>
+                <h3>Arriving: <input type="text" name="arriving" class="form-control" placeholder="LAX" /></h3>
+                <input type="submit" class="btn btn-info" value="Find" />
+            </div>
+        </form>
+    </div>
+</div>
+

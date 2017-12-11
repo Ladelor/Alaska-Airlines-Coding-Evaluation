@@ -1,0 +1,73 @@
+﻿@using Alaska_Airlines_Coding_Evaluation.Models;
+@{
+    ViewBag.Title = "Find";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@if (Model.arrivingAirport == null)
+{
+    <div class="jumbotron">
+        <h1>Please enter valid airport codes</h1>
+        <h3>  Example: SEA</h3>
+    </div>
+
+    <div class="row">
+        <div class="page-header">
+            <h1>Find a Flight</h1>
+            <h4>Search for flights using 3 Character Airplane code</h4>
+            <form class="navbar-form navbar-left" role="search" method="POST" action="">
+                <div class="form-group">
+                    <h3>Departing: <input type="text" name="departing" class="form-control" placeholder="SEA" /></h3>
+                    <h3>Arriving: <input type="text" name="arriving" class="form-control" placeholder="LAX" /></h3>
+                    <input type="submit" class="btn btn-info" value="Find" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+}
+else
+{
+    <div class="row">
+        <form action="" method="post">
+            <div class=" page-header">
+                <h1>Flights available from @Model.departingAirport to @Model.arrivingAirport</h1>
+            </div>
+            <button name="sortMode" type="submit" value="1">
+                Sort by price
+            </button>
+            <button name="sortMode" type="submit" value="2">
+                Sort by departure time
+            </button>
+            <input type="text" name="departing" value="@Model.departingAirport" />
+            <input type="text" name="arriving" value="@Model.arrivingAirport" />
+        </form>
+        <br />
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Flight Number</th>
+                    <th>Departing Time</th>
+                    <th>Arrival Time</th>
+                    <th>Main Cabin</th>
+                    <th>First Class</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var R in Model.flights)
+                {
+                    <tr>
+                        <td>@R.flightNumber</td>
+                        <td>@R.departTime</td>
+                        <td>@R.arrivalTime</td>
+                        <td>$@R.mainCabinPrice</td>
+                        <td>$@R.firstClassPrice</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+}
+
